@@ -1,0 +1,478 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for CV/Resume
+%
+% This template has been downloaded from:
+% https://github.com/posquit0/Awesome-CV
+%
+% Original author:
+% Claud D. Park <posquit0.bj@gmail.com>
+% http://www.posquit0.com
+%
+% Modifications by:
+% Junhao Dong <junhao.dong96@gmail.com>
+%
+% Template license:
+% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%
+
+
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4 paper size by default, use 'letterpaper' for US letter
+\documentclass[12pt, a4paper]{awesome-cv}
+
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+
+% Specify the location of the included fonts
+\fontdir[fonts/]
+
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-red}
+% Uncomment if you would like to specify your own color
+% \definecolor{awesome}{HTML}{CA63A8}
+
+\usepackage[backend=biber,defernumbers=true,style=numeric,sorting=ydnt,maxbibnames=3]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{acronym} % \ac[p], \acl[p], \acs[p], \acf[p]
+
+% Acronyms
+% --------
+\acrodef{CRDT}[CRDT]{Conflict-free Replicated Data Type}
+\acrodefplural{CRDT}[CRDTs]{Conflict-free Replicated Data Types}
+
+% Colors for text
+% Uncomment if you would like to specify your own color
+% \definecolor{darktext}{HTML}{414141}
+% \definecolor{text}{HTML}{333333}
+% \definecolor{graytext}{HTML}{5D5D5D}
+% \definecolor{lighttext}{HTML}{999999}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{false}
+
+% If you would like to change the social information separator from a pipe (|) to something else
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+\makeatletter
+\patchcmd{\@sectioncolor}{\color}{\mdseries\color}{}{}
+\makeatother
+
+%-------------------------------------------------------------------------------
+%	PERSONAL INFORMATION
+%	Comment any of the lines below if they are not required
+%-------------------------------------------------------------------------------
+% Available options: circle|rectangle,edge/noedge,left/right
+% \photo[rectangle,edge,right]{profile}
+\name{Matthieu}{Nicolas}
+\position{Doctorant contractuel chargé d'enseignement}
+% \address{address}
+
+\mobile{+33 6 75 98 34 40}
+\email{matthieu.nicolas@univ-lorraine.fr}
+% \homepage{homepage}
+\github{MatthieuNICOLAS}
+%\linkedin{linkedin-id}
+% \gitlab{gitlab-id}
+% \stackoverflow{SO-id}{SO-name}
+% \twitter{@twit}
+% \skype{skype-id}
+% \reddit{reddit-id}
+% \extrainfo{extra informations}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+% Print the header with above personal informations
+% Give optional argument to change alignment(C: center, L: left, R: right)
+\makecvheader[C]
+
+% Print the footer with 3 arguments(<left>, <center>, <right>)
+% Leave any of these blank if they are not needed
+% \makecvfooter
+%   {\today}
+%   {Junhao Dong~~~·~~~Résumé}
+%   {\thepage}
+
+%-------------------------------------------------------------------------------
+%	CV/RESUME CONTENT
+%	Each section is imported separately, open each file in turn to modify content
+%-------------------------------------------------------------------------------
+\cvsection{Déroulement de carrière}
+
+\begin{cventries}
+
+\cventry
+  {Doctorant contractuel}
+  {Université de Lorraine, équipe Coast}
+  {Nancy}
+  {Depuis Octobre 2017}
+  {
+    \begin{cvitems} % Description(s) of tasks/responsibilities
+      \item {\textbf{Intitulé :} (Ré)Identification efficace dans les types de données répliquées sans conflit (CRDTs)}
+      \item{\textbf{Mots clés :} systèmes distribués, pair-à-pair, réplication optimiste, CRDTs, performances}
+      \item{\textbf{Directeur de thèse :} Pr. Olivier Perrin}
+      \item{\textbf{Co-directeur de thèse :} Dr. Gérald Oster}
+    \end{cvitems}
+  }
+
+\begin{cvparagraph}
+  Dans le cadre de mes travaux de recherche, j'étudie et travaille sur les \acfp{CRDT}.
+  Les \acp{CRDT} sont de nouvelles spécifications des types abstraits de données, tels que l'\emph{Ensemble} ou la \emph{Séquence}.
+  Contrairement aux spécifications traditionnelles, les \acp{CRDT} sont conçus pour supporter nativement les modifications concurrentes.
+  Pour ce faire, ces structures de données intègrent un mécanisme de résolution de conflits directement au sein de leur spécification.
+  Cette spécificité rend les \acp{CRDT} particulièrement adaptés pour concevoir des systèmes distribués hautement disponibles dans lesquels différents noeuds répliquent et modifient une même donnée sans aucune coordination.
+
+  Pour résoudre les conflits de manière déterministe, les \acp{CRDT} utilisent généralement des identifiants qu'ils associent aux éléments stockés au sein de la structure de données.
+  Cependant, selon le type de \ac{CRDT}, les identifiants doivent respecter un ensemble de contraintes telles qu'être unique ou appartenir à un espace dense.
+  Dans certains cas, ces contraintes empêchent de borner la taille des identifiants.
+  La taille des identifiants croît alors continuellement avec le nombre de modifications effectuées.
+
+  Ces identifiants représentent donc un surcoût lié à l'utilisation des \acp{CRDT} par rapport aux structures de données traditionnelles.
+  Ce surcoût décourage l'adoption des \acp{CRDT} dans les systèmes distribués.
+  Le but de cette thèse est de proposer des solutions pour pallier ce problème.
+  L'approche que nous proposons consiste à intégrer un mécanisme de renommage au sein des \acp{CRDT}.
+  Ce mécanisme a pour but de permettre aux différents noeuds de renommer les identifiants afin de réduire leur taille, tout en respectant les contraintes imposées aux \acp{CRDT}.
+  En particulier, le renommage doit se faire sans aucune coordination entre les noeuds.
+  Afin de valider cette approche, nous avons conçu, implémenté, et évalué un tel mécanisme pour \emph{LogootSplit}, un \ac{CRDT} souffrant particulièrement du problème de croissance des identifiants.
+  Ces travaux ont conduit à la conception d'un nouveau \ac{CRDT} : \emph{RenamableLogootSplit}.
+
+  \subentrytitlestyle{Publications}
+  \begin{description}[labelindent=1.6em,itemsep=-0.3em]
+    \item TODO: ajouter preprint PaPoc'20
+    \item \fullcite{nicolas:hal-01932552}
+  \end{description}
+\end{cvparagraph}
+
+\cventry
+  {Ingénieur Recherche \& Développement} % Job title
+  {INRIA, équipe Coast} % Organization
+  {Nancy} % Location
+  {Septembre 2014 – Septembre 2017} % Date(s)
+  {}
+
+  \honordatestyle{OpenPaaS::NG}
+  % 0 OpenPaaS::NG
+  % 1 \honortitlestyle{OpenPaaS::NG}\\
+  % 2 \honorpositionstyle{OpenPaaS::NG}\\
+  % 3 \honorlocationstyle{OpenPaaS::NG}\\
+  % 4 \honordatestyle{OpenPaaS::NG}\\
+  % 5 \entrytitlestyle{OpenPaaS::NG}\\
+  % 6 \subentrytitlestyle{OpenPaaS::NG}\\
+  % 7 \entrypositionstyle{OpenPaaS::NG}\\
+  % 8 \subentrypositionstyle{OpenPaaS::NG}\\
+
+  \begin{cvparagraph}
+    Ce projet a pour objectif la réalisation d'un réseau social d'entreprise open-source incorporant une suite d'applications collaboratives pair-à-pair de bureautique.
+    Le but est ainsi de proposer une alternative viable et libre à des solutions telles que Google Apps. Ce projet est réalisé en collaboration avec l’équipe DaSciM (Data Science and Mining) du laboratoire d’informatique de l’École Polytechnique, Linagora, XWiki SAS et Nexedi.
+
+    Dans le cadre de ce projet, l'équipe COAST travaille sur la fédération interorganisationelle de systèmes pair-à-pair et sur la sécurisation des échanges de données dans ce type de collaboration. De plus, elle apporte son expertise sur les mécanismes de réplication de données et de cohérence à terme dans les systèmes distribués.
+
+    C'est sur ce dernier point que portaient les tâches que j'ai effectuées dans le cadre de ce projet.
+    Afin d'être validés, ces travaux ont été intégrés dans \href{https://www.coedit.re}{\textbf{MUTE}}, la plateforme de démonstration de l'équipe.
+
+    \begin{tightemize}
+      \item Maintenance de l'implémentation de \emph{LogootSplit}
+      \item Étude de la littérature sur les types de données répliquées sans conflits existants et leurs cas d'utilisation
+      \item Développement et intégration d'un système d'anti-entropie
+    \end{tightemize}
+
+    \subentrytitlestyle{Publications}
+    \begin{description}[labelindent=1.6em,itemsep=-0.3em]
+      \item \fullcite{nicolas:hal-01655438}
+    \end{description}
+  \end{cvparagraph}
+
+  \honordatestyle{ADT PLM}
+  % 0 OpenPaaS::NG
+  % 1 \honortitlestyle{OpenPaaS::NG}\\
+  % 2 \honorpositionstyle{OpenPaaS::NG}\\
+  % 3 \honorlocationstyle{OpenPaaS::NG}\\
+  % 4 \honordatestyle{OpenPaaS::NG}\\
+  % 5 \entrytitlestyle{OpenPaaS::NG}\\
+  % 6 \subentrytitlestyle{OpenPaaS::NG}\\
+  % 7 \entrypositionstyle{OpenPaaS::NG}\\
+  % 8 \subentrypositionstyle{OpenPaaS::NG}\\
+
+  \begin{cvparagraph}
+    \href{http://people.irisa.fr/Martin.Quinson/Teaching/PLM/}{\textbf{La PLM}} est un environnement d’apprentissage de la programmation libre et ouvert.
+    Développé par Gérald Oster et Martin Quinson, il permet d’explorer différents aspects de l’algorithmique au travers d’exercices interactifs.
+
+    Le but de ce projet était de faire évoluer cet outil en une plateforme expérimentale pour l'enseignement de la programmation informatique.
+    Pour cela, un mécanisme de capture des traces d'utilisation des apprenant devait être intégré afin de générer un corpus de données.
+    Ce corpus, mis à disposition de chercheurs, devait permettre la conduite de travaux de recherche, tel que la conception d'outils d'aide automatique à l'apprentissage.
+    Un second objectif ce projet était d'effectuer le portage de l'outil, jusqu'à alors disponible sous la forme d'une application lourde Java, en une application web afin de le rendre accessible au plus grand nombre.
+
+    Mes travaux se sont principalement focalisés sur la réalisation de ce portage.
+    Ce changement important de type d'application a entraîné l'apparition de plusieurs problématiques auxquelles il a fallu apporter des solutions.
+
+    \begin{tightemize}
+    \item Implémentation et test du mécanisme de capture des traces d'utilisation
+    \item Conception et mise en place d'une architecture distribuée assurant le passage à l'échelle de l'application
+    \item Isolation de l'exécution du code des apprenants
+    \item Déploiement et supervision d'une application multi-composants
+    \end{tightemize}
+  \end{cvparagraph}
+
+\cventry
+  {Stage élève-ingénieur} % Job title
+  {Université de Lorraine, équipe Coast} % Organization
+  {Nancy} % Location
+  {Avril 2014 – Août 2014} % Date(s)
+  {
+    \begin{cvitems} % Description(s) of tasks/responsibilities
+      \item {\textbf{Intitulé :}  Réalisation d’une plateforme d’edition collaborative}
+    \end{cvitems}
+  }
+
+  \begin{cvparagraph}
+    Issue des travaux sur l'édition collaborative, une nouvelle famille d'algorithmes de réplication des données et de maintien de la cohérence à terme est apparue récemment : l'approche \acf{CRDT}.
+    Cette nouvelle famille d'algorithme répond à plusieurs des limites constatées chez les autres approches existantes, notamment concernant la capacité de passage à l'échelle.
+
+    L'équipe Coast, travaillant sur ce domaine de recherche, a proposé un nouvel algorithme de cette famille : \emph{LogootSplit}.
+
+    Afin d'illustrer et de mettre en valeur les travaux de l'équipe sur cette approche,
+    ma tâche a été de concevoir et de développer un éditeur collaboratif temps réel se basant sur cet algorithme.
+
+    \begin{tightemize}
+      \item Implémentation sous forme de librairie de \emph{LogootSplit}
+      \item Conception et développement de \href{https://www.coedit.re}{\textbf{MUTE}}, un éditeur collaboratif temps réel en ligne reposant sur cette librairie
+    \end{tightemize}
+  \end{cvparagraph}
+
+\cventry
+  {Stage élève-technicien} % Job title
+  {École Polytechnique de Montréal} % Organization
+  {Montréal, Canada} % Location
+  {Avril 2011 – Juin 2011} % Date(s)
+  {
+    \begin{cvitems} % Description(s) of tasks/responsibilities
+      \item {\textbf{Intitulé :}  Développement d’un outil d'analyse d'algorithmes d'édition collaborative}
+    \end{cvitems}
+  }
+
+\begin{cvparagraph}
+  Les outils d'édition collaborative existants reposent majoritairement sur une famille spécifique d'algorithmes pour assurer le maintien de la cohérence à terme : les transformées opérationnelles.
+
+  Deux propriétés de convergence \emph{TP1} et \emph{TP2} existent et permettent de garantir la correction de ces algorithmes.
+
+  L'objectif de ce stage était de réaliser un outil permettant de vérifier automatiquement le respect de ces propriétés pour un algorithme donné.
+  \begin{tightemize}
+    \item Implémentation de plusieurs algorithmes issus de la famille des transformées opérationnelles
+    \item Développement de l'outil permettant de vérifier les propriétés de convergences \emph{TP1} et \emph{TP2} pour les algorithmes implémentés.
+  \end{tightemize}
+\end{cvparagraph}
+
+\end{cventries}
+
+\cvsection{Diplômes}
+
+TODO
+
+\cvsection{Enseignement}
+
+TODO: ajouter intro et bilan des heures d'enseignement
+
+\begin{cventries}
+
+  \cventry
+  {Programmation web sur client} % Job title
+  {IUT Nancy Charlemagne} % Organization
+  {} % Location
+  {2017 - 2020} % Date(s)
+  {
+    \begin{cvitems}
+      \item {\textbf{Niveau : } Licence Pro Informatique CIASIE}
+      \item {\textbf{Responsable : } Dr. Gérôme Canals}
+      \item {\textbf{Volume horaire : } 24h EI}
+    \end{cvitems}
+  }
+
+  \begin{cvparagraph}
+    Destiné à des étudiants ayant déjà appris et utilisé JavaScript au cours de leur formation précédente, ce module a pour but de consolider leur connaissance et maîtrise des bases du langage (POO, manipulation du DOM...) puis d'introduire des notions plus avancées (closures, AJAX, bundling...).
+  \end{cvparagraph}
+
+  \begin{cvparagraph}
+    Responsable d'un groupe, j'ai notamment retravaillé le contenu du module (cours, exercices, projet) par rapport à l'évolution du langage à partir de la seconde année.
+  \end{cvparagraph}
+
+  \cventry
+  {Algorithmique} % Job title
+  {IUT Nancy Charlemagne} % Organization
+  {} % Location
+  {2018 - 2020} % Date(s)
+  {
+    \begin{cvitems}
+      \item {\textbf{Niveau : } DUT Informatique 1A}
+      \item {\textbf{Responsable : } Dr. Yolande Belaid}
+      \item {\textbf{Volume horaire : } 32h TD}
+    \end{cvitems}
+  }
+
+  \begin{cvparagraph}
+    TODO
+  \end{cvparagraph}
+
+  \begin{cvparagraph}
+    Responsable d'un groupe, TODO
+  \end{cvparagraph}
+
+  \cventry
+  {Conception Orienté Objet} % Job title
+  {IUT Nancy Charlemagne} % Organization
+  {} % Location
+  {2017 - 2018} % Date(s)
+  {
+    \begin{cvitems}
+      \item {\textbf{Niveau : } DUT Informatique 1A}
+      \item {\textbf{Responsable : } Dr. Vincent Thomas}
+      \item {\textbf{Volume horaire : } 40h TD}
+    \end{cvitems}
+  }
+
+  \begin{cvparagraph}
+    L'objectif de ce module est d'enseigner aux étudiants les principes de la conception orienté objet (séparation des responsabilités, factorisation du code...) et de leur apprendre à manier les outils existants (UML, patrons de conceptions...).
+    Une partie du module est aussi consacrée aux bonnes pratiques de développement (logiciels de gestion de versions, tests unitaires...).
+  \end{cvparagraph}
+
+  \begin{cvparagraph}
+    Chargé de TD.
+  \end{cvparagraph}
+
+  \cventry
+  {Bases de la Programmation Objet} % Job title
+  {Faculté des Sciences et Technologies de Nancy} % Organization
+  {} % Location
+  {2016 - 2017} % Date(s)
+  {
+    \begin{cvitems}
+      \item {\textbf{Niveau : } Licence 2 Informatique}
+      \item {\textbf{Responsable : } Dr. Martine Gautier}
+      \item {\textbf{Volume horaire : } 18h TP}
+    \end{cvitems}
+  }
+
+  \begin{cvparagraph}
+    L'objectif de ce module est d'enseigner aux étudiants le paradigme de la programmation orientée objet et ses spécificités (classe, héritage, polymorphisme...), ainsi que les bonnes pratiques de développement (programmation par contrat, tests...).
+    Ces concepts sont ensuite mis en application dans le cadre de multiples exercices à réaliser en Java.
+  \end{cvparagraph}
+
+  \begin{cvparagraph}
+    Chargé de TP, j'ai notamment participé à la conception et l'animation du TP noté.
+  \end{cvparagraph}
+
+  \cventry
+  {Préparation informatique} % Job title
+  {Telecom Nancy} % Organization
+  {} % Location
+  {2014 - 2017} % Date(s)
+  {
+    \begin{cvitems}
+      \item {\textbf{Niveau : } 1\textsuperscript{ère} année TELECOM Nancy (Licence 3)}
+      \item {\textbf{Responsables : } Dr. Gérald Oster et Pr. Martin Quinson}
+      \item {\textbf{Volume horaire : } TP : 30h}
+    \end{cvitems}
+  }
+
+  \begin{cvparagraph}
+    Destiné aux élèves provenant de classes préparatoires, ce module a pour but de travailler les notions de bases de la programmation (instructions, conditions, boucles...) avant d'aborder des exercices plus complexes (tris, recursivité).
+    Dans le cadre de ce module, les étudiants travaillent de façon autonome sur l'environnement d'apprentissage de la PLM.
+  \end{cvparagraph}
+
+  \begin{cvparagraph}
+    Intervenant.
+  \end{cvparagraph}
+
+\end{cventries}
+
+\cvsection{Encadrement}
+
+\begin{cventries}
+
+  \cventry
+    {Implémentation d'un protocole de gestion de groupe au sein d'une application d'édition collaborative} % Job title
+    {Co-encadrant d'un étudiant de 2A - DUT Informatique} % Organization
+    {Stage} % Location
+    {Avril 2020 - Juillet 2020} % Date(s)
+    {}
+
+  \medskip
+
+  \cventry
+    {Intégration d'un agent de messages basé sur des journaux au sein d'une application d'édition collaborative} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Juin 2019 - Août 2019} % Date(s)
+    {Co-encadrant d'un étudiant de 2A ingénieur - TELECOM Nancy}
+
+  \medskip
+
+  \cventry
+    {Simulation du comportement de collaborateurs dans une session d’edition collaborative} % Job title
+    {Projet d'initiation à la recherche} % Organization
+    {} % Location
+    {Janvier 2017 - Mai 2017} % Date(s)
+    {Co-encadrant de 2 étudiants de 2A ingénieur - TELECOM Nancy}
+
+  \medskip
+
+  \cventry
+    {Service de compilation isolé pour la PLM} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Juin 2015 - Août 2015} % Date(s)
+    {Co-encadrant d'un étudiant de 2A ingénieur - TELECOM Nancy}
+
+    \medskip
+
+  \cventry
+    {Mass Error Mediation in a Learning Environment} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Juin 2015 - Août 2015} % Date(s)
+    {Co-encadrant d'un étudiant de 2A ingénieur - TELECOM Nancy}
+
+  \medskip
+
+  \cventry
+    {Mise en place d'un environnement de qualification pour la plateforme PLM} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Juin 2015 - Août 2015} % Date(s)
+    {Co-encadrant d'un étudiant de 2A ingénieur - TELECOM Nancy}
+
+  \medskip
+
+  \cventry
+    {Portage d’un exerciseur de programmation sur une architecture web} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Avril 2015 - Juin 2015} % Date(s)
+    {Co-encadrant d'un étudiant de 2A - DUT Informatique}
+
+  \medskip
+
+  \cventry
+    {Intégration d’un langage visuel de programmation dans exerciseur de programmation} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Avril 2015 - Juin 2015} % Date(s)
+    {Co-encadrant d'un étudiant de 2A - DUT Informatique}
+
+  \medskip
+
+  \cventry
+    {Conception et realisation d’un editeur d’exercices pour un exerciseur de programmation} % Job title
+    {Stage} % Organization
+    {} % Location
+    {Avril 2015 - Juin 2015} % Date(s)
+    {Co-encadrant d'un étudiant de 2A - DUT Informatique}
+\end{cventries}
+
+%-------------------------------------------------------------------------------
+\end{document}
