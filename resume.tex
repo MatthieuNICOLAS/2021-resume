@@ -41,6 +41,10 @@
 
 \usepackage{acronym} % \ac[p], \acl[p], \acs[p], \acf[p]
 
+\newcommand{\customlink}[2]{
+  \href{#2}{\textbf{#1} (\emph{#2})}
+}
+
 % Acronyms
 % --------
 \acrodef{CRDT}[CRDT]{Conflict-free Replicated Data Type}
@@ -94,10 +98,10 @@
 
 % Print the footer with 3 arguments(<left>, <center>, <right>)
 % Leave any of these blank if they are not needed
-% \makecvfooter
-%   {\today}
-%   {Junhao Dong~~~·~~~Résumé}
-%   {\thepage}
+\makecvfooter
+  {\today}
+  {Matthieu Nicolas~~~·~~~CV}
+  {\thepage}
 
 %-------------------------------------------------------------------------------
 %	CV/RESUME CONTENT
@@ -154,7 +158,11 @@
   {INRIA, équipe Coast} % Organization
   {Nancy} % Location
   {Septembre 2014 – Septembre 2017} % Date(s)
-  {}
+  {
+    \begin{cvitems} % Description(s) of tasks/responsibilities
+      \item {\textbf{Projets :} OpenPaaS::NG et PLM}
+    \end{cvitems}
+  }
 
   \honordatestyle{OpenPaaS::NG}
   % 0 OpenPaaS::NG
@@ -168,13 +176,13 @@
   % 8 \subentrypositionstyle{OpenPaaS::NG}\\
 
   \begin{cvparagraph}
-    Ce projet a pour objectif la réalisation d'un réseau social d'entreprise open-source incorporant une suite d'applications collaboratives pair-à-pair de bureautique.
-    Le but est ainsi de proposer une alternative viable et libre à des solutions telles que Google Apps. Ce projet est réalisé en collaboration avec l’équipe DaSciM (Data Science and Mining) du laboratoire d’informatique de l’École Polytechnique, Linagora, XWiki SAS et Nexedi.
+    Ce projet avait pour objectif la réalisation d'un réseau social d'entreprise open-source incorporant une suite d'applications collaboratives pair-à-pair de bureautique.
+    Le but était ainsi de proposer une alternative viable et libre à des solutions telles que Google Apps. Ce projet fut réalisé en collaboration avec l’équipe DaSciM (Data Science and Mining) du laboratoire d’informatique de l’École Polytechnique, Linagora, XWiki SAS et Nexedi.
 
-    Dans le cadre de ce projet, l'équipe COAST travaille sur la fédération interorganisationelle de systèmes pair-à-pair et sur la sécurisation des échanges de données dans ce type de collaboration. De plus, elle apporte son expertise sur les mécanismes de réplication de données et de cohérence à terme dans les systèmes distribués.
+    Dans le cadre de ce projet, l'équipe COAST travaillait sur la fédération interorganisationelle de systèmes pair-à-pair et sur la sécurisation des échanges de données dans ce type de collaboration. De plus, elle apportait son expertise sur les mécanismes de réplication de données et de cohérence à terme dans les systèmes distribués.
 
     C'est sur ce dernier point que portaient les tâches que j'ai effectuées dans le cadre de ce projet.
-    Afin d'être validés, ces travaux ont été intégrés dans \href{https://www.coedit.re}{\textbf{MUTE}}, la plateforme de démonstration de l'équipe.
+    Afin d'être validés, ces travaux ont été intégrés dans \customlink{MUTE}{https://www.coedit.re}, la plateforme de démonstration de l'équipe.
 
     \begin{tightemize}
       \item Maintenance de l'implémentation de \emph{LogootSplit}
@@ -200,7 +208,7 @@
   % 8 \subentrypositionstyle{OpenPaaS::NG}\\
 
   \begin{cvparagraph}
-    \href{http://people.irisa.fr/Martin.Quinson/Teaching/PLM/}{\textbf{La PLM}} est un environnement d’apprentissage de la programmation libre et ouvert.
+    La \customlink{PLM}{http://people.irisa.fr/Martin.Quinson/Teaching/PLM/} est un environnement d’apprentissage de la programmation libre et ouvert.
     Développé par Gérald Oster et Martin Quinson, il permet d’explorer différents aspects de l’algorithmique au travers d’exercices interactifs.
 
     Le but de ce projet était de faire évoluer cet outil en une plateforme expérimentale pour l'enseignement de la programmation informatique.
@@ -241,7 +249,7 @@
 
     \begin{tightemize}
       \item Implémentation sous forme de librairie de \emph{LogootSplit}
-      \item Conception et développement de \href{https://www.coedit.re}{\textbf{MUTE}}, un éditeur collaboratif temps réel en ligne reposant sur cette librairie
+      \item Conception et développement de \customlink{MUTE}{https://www.coedit.re}, un éditeur collaboratif temps réel en ligne reposant sur cette librairie
     \end{tightemize}
   \end{cvparagraph}
 
@@ -292,7 +300,12 @@
 
 \cvsection{Enseignement}
 
-TODO: ajouter intro et bilan des heures d'enseignement
+\begin{cvparagraph}
+  Au cours des 3 dernières années, j'ai assuré une charge d'enseignement (DCCE) à l'IUT Nancy Charlemagne.
+  Auparavant, j'avais effectué plusieurs vacations à TELECOM Nancy ainsi qu'à la Faculté des Sciences et Technologies de Nancy.
+  L'ensemble de mes activités d'enseignement est présenté ci-dessous et récapitulé dans \autoref{tab:enseignement-details}.
+  Au total, je comptabilise \textbf{254h équivalent TD} d'enseignement.
+\end{cvparagraph}
 
 \begin{table}[ht]
   \centering
@@ -323,7 +336,7 @@ TODO: ajouter intro et bilan des heures d'enseignement
     \begin{cvitems}
       \item {\textbf{Niveau : } Licence Pro Informatique CIASIE}
       \item {\textbf{Responsable : } Dr. Gérôme Canals}
-      \item {\textbf{Volume horaire : } 24h EI}
+      \item {\textbf{Volume horaire : } 24h TP (2017-2018) puis 24h EI (2018-2020)}
     \end{cvitems}
   }
 
@@ -343,7 +356,7 @@ TODO: ajouter intro et bilan des heures d'enseignement
   {
     \begin{cvitems}
       \item {\textbf{Niveau : } DUT Informatique 1A}
-      \item {\textbf{Responsable : } Dr. Yolande Belaid}
+      \item {\textbf{Responsable : } Dr. Yolande Belaïd}
       \item {\textbf{Volume horaire : } 32h TD}
     \end{cvitems}
   }
@@ -353,7 +366,7 @@ TODO: ajouter intro et bilan des heures d'enseignement
   \end{cvparagraph}
 
   \begin{cvparagraph}
-    Chargé de CM et TD (Enseignement Intégré)
+    Chargé de CM et TD (Enseignement Intégré).
   \end{cvparagraph}
 
   \cventry
@@ -407,7 +420,7 @@ TODO: ajouter intro et bilan des heures d'enseignement
   {2014 - 2017} % Date(s)
   {
     \begin{cvitems}
-      \item {\textbf{Niveau : } 1\textsuperscript{ère} année TELECOM Nancy (Licence 3)}
+      \item {\textbf{Niveau : } TELECOM Nancy 1A (Licence 3)}
       \item {\textbf{Responsables : } Dr. Gérald Oster et Pr. Martin Quinson}
       \item {\textbf{Volume horaire : } 30h TP}
     \end{cvitems}
